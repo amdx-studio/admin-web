@@ -1,0 +1,123 @@
+/* ==========================================================================
+   KRIYA ADMIN — dashboard.css
+   Styles specific to the dashboard overview page.
+   ========================================================================== */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stat-card[data-tone="gold"] { border-left-color: var(--color-gold); }
+.stat-card[data-tone="success"] { border-left-color: var(--color-success); }
+.stat-card[data-tone="neutral"] { border-left-color: var(--color-text-faint); }
+
+.stat-card__label {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.stat-card__value {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.stat-card__delta {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.stat-card__delta.is-up { color: var(--color-success); }
+.stat-card__delta.is-down { color: var(--color-danger); }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  align-items: start;
+}
+
+.chart-legend {
+  display: flex;
+  gap: var(--space-4);
+  padding: 0 var(--space-5) var(--space-4);
+  flex-wrap: wrap;
+}
+
+.chart-legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.chart-legend__swatch { width: 10px; height: 10px; border-radius: 2px; }
+
+.chart-frame { padding: 0 var(--space-4) var(--space-4); }
+.chart-frame svg { width: 100%; height: auto; overflow: visible; }
+
+.chart-frame .chart-grid-line { stroke: var(--color-border); stroke-width: 1; }
+.chart-frame .chart-axis-label {
+  font-size: 10px;
+  fill: var(--color-text-faint);
+  font-family: var(--font-base);
+}
+.chart-frame .chart-line { fill: none; stroke: var(--color-accent); stroke-width: 2.5; }
+.chart-frame .chart-area { fill: var(--color-accent-soft); opacity: 0.7; }
+.chart-frame .chart-point { fill: var(--color-accent); }
+
+.bestseller-list { padding: var(--space-2) var(--space-4) var(--space-4); display: flex; flex-direction: column; }
+
+.bestseller-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+}
+.bestseller-row:hover { background: var(--color-surface-alt); }
+
+.bestseller-row__rank {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 auto;
+}
+
+.bestseller-row__thumb {
+  width: 38px; height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.bestseller-row__body { flex: 1; min-width: 0; }
+.bestseller-row__name { font-weight: 600; font-size: var(--fs-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bestseller-row__meta { font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+.bestseller-row__value { font-size: var(--fs-sm); font-weight: 600; white-space: nowrap; }
+
+.dashboard-table-card { margin-top: var(--space-4); }

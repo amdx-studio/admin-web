@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produk — Kriya Admin</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body data-page="produk" data-page-title="Produk">
+  <div class="sidebar-overlay" data-role="sidebar-overlay"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-root"></aside>
+    <div>
+      <header class="topbar" id="topbar-root"></header>
+      <main class="content">
+
+        <div class="content__header">
+          <h2>Daftar Produk</h2>
+          <button class="btn btn-primary" id="btn-add-product">+ Tambah Produk</button>
+        </div>
+
+        <div class="card">
+          <div id="product-error" class="form-error" role="alert" hidden>
+            <span id="product-error-text"></span>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-retry">Coba Lagi</button>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Produk</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="product-table-body">
+              <!-- rows / skeleton diisi oleh products.js -->
+            </tbody>
+          </table>
+
+          <p id="product-empty" class="table-empty" hidden>Belum ada produk.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal tambah/edit produk -->
+  <div class="modal" id="product-modal" hidden>
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div class="modal__panel">
+      <h3 id="product-modal-title">Tambah Produk</h3>
+
+      <div id="modal-error" class="form-error" role="alert" hidden></div>
+
+      <form id="product-form" novalidate>
+        <input type="hidden" id="product-id" name="id" />
+
+        <div class="field">
+          <label for="nama">Nama Produk</label>
+          <input class="input" type="text" id="nama" name="nama" required />
+        </div>
+
+        <div class="field">
+          <label for="kategori_id">Kategori</label>
+          <select class="input" id="kategori_id" name="kategori_id" required>
+            <option value="">Pilih kategori</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="harga">Harga (Rp)</label>
+          <input class="input" type="number" id="harga" name="harga" min="0" required />
+        </div>
+
+        <div class="field">
+          <label for="stok">Stok</label>
+          <input class="input" type="number" id="stok" name="stok" min="0" required />
+        </div>
+
+        <div class="field">
+          <label for="deskripsi">Deskripsi</label>
+          <textarea class="input" id="deskripsi" name="deskripsi" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="gambar">Gambar Produk</label>
+          <input type="file" id="gambar" name="gambar" accept="image/*" />
+          <img id="gambar-preview" src="" alt="" hidden style="max-width:120px;margin-top:8px;border-radius:8px;" />
+        </div>
+
+        <div class="modal__actions">
+          <button type="button" class="btn btn-secondary" data-action="close-modal">Batal</button>
+          <button type="submit" class="btn btn-primary" id="product-submit">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Konfirmasi hapus -->
+  <div class="modal" id="delete-modal" hidden>
+    <div class="modal__backdrop" data-action="close-delete-modal"></div>
+    <div class="modal__panel">
+      <h3>Hapus Produk</h3>
+      <p id="delete-modal-text">Yakin ingin menghapus produk ini?</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn-secondary" data-action="close-delete-modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btn-confirm-delete">Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/products.js"></script>
+</body>
+</html>
+

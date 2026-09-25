@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk — Kriya Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    body.login-body {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .login-brand {
+      background: var(--color-sidebar-bg);
+      color: var(--color-sidebar-text-active);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--space-7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-brand__top { display: flex; align-items: center; gap: var(--space-3); position: relative; z-index: 1; }
+
+    .login-brand__mark {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--color-accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .login-brand__name { font-size: var(--fs-md); font-weight: 600; }
+    .login-brand__sub { font-size: var(--fs-xs); color: var(--color-sidebar-icon); }
+
+    .login-brand__quote {
+      position: relative;
+      z-index: 1;
+      max-width: 380px;
+    }
+
+    .login-brand__quote h2 {
+      font-size: var(--fs-xl);
+      font-weight: 600;
+      line-height: var(--lh-tight);
+      margin-bottom: var(--space-3);
+    }
+
+    .login-brand__quote p { color: var(--color-sidebar-text); font-size: var(--fs-sm); }
+
+    .login-brand__weave {
+      position: absolute;
+      inset: auto -10% -20% auto;
+      width: 480px;
+      height: 480px;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+
+    .login-form-side {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-6);
+    }
+
+    .login-form-card { width: 100%; max-width: 380px; }
+
+    .login-form-card h1 { font-size: var(--fs-xl); font-weight: 700; margin-bottom: var(--space-2); }
+    .login-form-card > p { color: var(--color-text-muted); font-size: var(--fs-sm); margin-bottom: var(--space-6); }
+
+    .login-form-card form { display: flex; flex-direction: column; gap: var(--space-4); }
+
+    .login-note {
+      margin-top: var(--space-5);
+      font-size: var(--fs-xs);
+      color: var(--color-text-faint);
+      text-align: center;
+    }
+
+    #login-alert { display: none; }
+
+    @media (max-width: 900px) {
+      body.login-body { grid-template-columns: 1fr; }
+      .login-brand { display: none; }
+    }
+  </style>
+</head>
+<body class="login-body">
+
+  <section class="login-brand">
+    <div class="login-brand__top">
+      <span class="login-brand__mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5F6FA" stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+          <path d="M8 3v6M16 9v6M8 15v6" stroke-width="1.4" opacity="0.7"/>
+        </svg>
+      </span>
+      <div>
+        <div class="login-brand__name">Kriya Admin</div>
+        <div class="login-brand__sub">Panel pengelolaan UMKM</div>
+      </div>
+    </div>
+
+    <div class="login-brand__quote">
+      <h2>Kelola produk, pesanan, dan pelanggan dari satu tempat.</h2>
+      <p>Panel admin ini akan terhubung ke sistem yang sama dengan toko utama Anda — produk, kategori, rating, dan pesanan tetap satu sumber data.</p>
+    </div>
+
+    <svg class="login-brand__weave" viewBox="0 0 200 200" aria-hidden="true">
+      <g stroke="#F5F6FA" stroke-width="1.2" fill="none">
+        <path d="M0 20h200M0 50h200M0 80h200M0 110h200M0 140h200M0 170h200"/>
+        <path d="M20 0v200M50 0v200M80 0v200M110 0v200M140 0v200M170 0v200"/>
+      </g>
+    </svg>
+  </section>
+
+  <section class="login-form-side">
+    <div class="login-form-card">
+      <h1>Masuk ke Kriya Admin</h1>
+      <p>Masukkan kredensial admin untuk melanjutkan.</p>
+
+      <div id="login-alert" class="alert alert-danger" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+        <span></span>
+      </div>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" type="email" id="email" name="email" placeholder="admin@umkm.id" autocomplete="username" required />
+        </div>
+
+        <div class="field">
+          <label for="password">Kata Sandi</label>
+          <div class="input-with-action">
+            <input class="input" type="password" id="password" name="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required />
+            <button type="button" class="input-with-action__btn" id="toggle-password" aria-label="Tampilkan kata sandi">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="login-submit" style="height:44px; margin-top: var(--space-2);">
+          <span class="btn__label">Masuk</span>
+          <span class="btn__spinner"></span>
+        </button>
+      </form>
+
+      <p class="login-note">Belum punya akun? Hubungi pemilik toko untuk membuat akun admin.</p>
+    </div>
+  </section>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

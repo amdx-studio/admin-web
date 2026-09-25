@@ -1,0 +1,61 @@
+/* ==========================================================================
+   KRIYA ADMIN — responsive.css
+   Breakpoints: desktop (default) → tablet ≤1024px → mobile ≤768px
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------
+   Tablet: sidebar can collapse to an icon rail via the topbar toggle.
+   The collapse button becomes visible; drawer/hamburger stays hidden.
+   --------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .topbar__collapse-btn { display: flex; }
+  .topbar__search { width: 200px; }
+
+  .dashboard-grid { grid-template-columns: 1fr; }
+
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------------------------------------------------------------------
+   Mobile: sidebar becomes an off-canvas drawer, topbar shows hamburger
+   instead of the collapse toggle, content collapses to one column.
+   --------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .app-shell { grid-template-columns: 1fr; }
+
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0;
+    width: var(--sidebar-width);
+    transform: translateX(-100%);
+    z-index: 50;
+    transition: transform var(--transition-slow);
+  }
+
+  body.sidebar-open .sidebar { transform: translateX(0); }
+  body.sidebar-collapsed .app-shell { grid-template-columns: 1fr; }
+  body.sidebar-collapsed .sidebar { width: var(--sidebar-width); }
+  body.sidebar-collapsed .sidebar__brand-text,
+  body.sidebar-collapsed .sidebar__group-label,
+  body.sidebar-collapsed .sidebar__link-label { display: flex; }
+  body.sidebar-collapsed .sidebar__link { justify-content: flex-start; }
+
+  .topbar__collapse-btn { display: none; }
+  .topbar__menu-btn { display: flex; }
+  .topbar__search { display: none; }
+
+  .topbar { padding: 0 var(--space-4); gap: var(--space-2); }
+  .content { padding: var(--space-4); }
+
+  .stat-grid { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .stat-card__value { font-size: var(--fs-xl); }
+
+  .card__header { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+
+  .pagination { justify-content: center; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .topbar__profile-meta { display: none; }
+}

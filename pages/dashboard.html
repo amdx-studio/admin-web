@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard â€” Kriya Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body data-page="dashboard" data-page-title="Dashboard">
+
+  <div class="sidebar-overlay" data-role="sidebar-overlay"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar-root"></aside>
+
+    <div>
+      <header class="topbar" id="topbar-root"></header>
+
+      <main class="content">
+        <div class="page-heading">
+          <h1 style="font-size:var(--fs-lg); font-weight:600;">Ringkasan hari ini</h1>
+          <p>Pantau performa toko UMKM Anda secara singkat.</p>
+        </div>
+
+        <section id="stat-grid" class="stat-grid" aria-label="Statistik ringkas"></section>
+
+        <section class="dashboard-grid">
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h2>Penjualan Mingguan</h2>
+                <p>Total penjualan 7 hari terakhir (ribu rupiah)</p>
+              </div>
+            </div>
+            <div class="chart-legend">
+              <span class="chart-legend__item"><span class="chart-legend__swatch" style="background:var(--color-accent)"></span> Penjualan</span>
+            </div>
+            <div id="sales-chart" class="chart-frame"></div>
+          </div>
+
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h2>Produk Terlaris</h2>
+                <p>Berdasarkan jumlah terjual</p>
+              </div>
+            </div>
+            <div id="bestseller-list" class="bestseller-list"></div>
+          </div>
+        </section>
+
+        <section class="card dashboard-table-card">
+          <div class="card__header">
+            <div>
+              <h2>Detail Produk Terlaris</h2>
+              <p>Stok dan status produk dengan penjualan tertinggi</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Produk</th>
+                  <th>Penjualan</th>
+                  <th>Stok</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="top-products-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>
