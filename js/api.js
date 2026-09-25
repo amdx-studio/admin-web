@@ -2,7 +2,7 @@
 // Satu-satunya tempat frontend "bicara" ke backend Flask.
 // Semua service (dashboard.service.js, products.service.js, dst.) import dari sini.
 
-const API_BASE_URL = "kerajinan-umkm-new-production.up.railway.app/api";
+const API_BASE_URL = "https://kerajinan-umkm-new-production.up.railway.app";
 
 const TOKEN_KEY = "kriya_admin_token";
 
